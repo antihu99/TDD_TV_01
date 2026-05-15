@@ -1,0 +1,18 @@
+{
+  // .vscode/settings.json (공통 설정)
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  // Java 설정 (병행 시)
+  "java.compile.nullAnalysis.mode": "auto",
+  "java.test.defaultConfig": "junit5",
+  // 이전 Settings.json 내용 유지
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "coverage-gutters.coverageFileNames": [
+    "target/site/jacoco/jacoco.xml"
+  ]
+}
+// ── VSCode 필수 확장 Pack  ──────────────────────────
+// Java:
+// · Extension Pack for Java
+// · Test Runner for Java
+// · Coverage Gutters

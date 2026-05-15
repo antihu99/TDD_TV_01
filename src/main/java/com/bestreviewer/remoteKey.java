@@ -10,13 +10,27 @@
 
 package com.bestreviewer;
 
-enum remoteKey {
+enum RemoteKey {
     KEY_1("1"),
-    KEY_OK("OK");
+    KEY_2("2"),
+    KEY_3("3"),
+    KEY_4("4"),
+    KEY_5("5"),
+    KEY_6("6"),
+    KEY_7("7"),
+    KEY_8("8"),
+    KEY_9("9"),
+    KEY_0("0"),
+    KEY_OK("OK"),
+    KEY_CHANNEL_UP("CHANNEL_UP"),
+    KEY_CHANNEL_DOWN("CHANNEL_DOWN"),
+    KEY_SEARCH("SEARCH"),
+    KEY_FAVORITE_ADD("FAVORITE_ADD"),
+    KEY_NEXT_FAVORITE("NEXT_FAVORITE"),;
 
     final private String key;
 
-    remoteKey(String key) {
+    RemoteKey(String key) {
         this.key = key;
     }
 
