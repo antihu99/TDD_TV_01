@@ -1,8 +1,8 @@
 # TDD_TV_01 — User Prompts Only
 
 **Export**: 2026-05-19  
-**Sessions**: `3b7d5ee7-d341-4044-811c-f29bda2a0a36` (7 prompts) + `17ca3870-850a-4f1d-820c-be3e6882786f` (3 prompts)  
-**Total**: 10 prompts
+**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5)  
+**Total**: 15 prompts
 
 ---
 
@@ -131,6 +131,67 @@ report 폴더에 보고서를 작성해줘
 
 ---
 
+## Session 3 — 테스트 계획·JaCoCo (2026-05-19)
+
+### Prompt 11 (P/C/T/F)
+
+```
+@TVController.java @TddTvRequirements.txt @requirements_analysis.md
+
+[P] 시니어 QA 리드입니다.
+[C] Java 21, JUnit 5, Maven, (가능하면 JaCoCo)
+[T] 테스트 계획서를 작성해줘.
+    - 단위 테스트 범위/우선순위
+    - 경계값 테스트 (key 0,1,98,99 )
+    - 예외/특이 케이스 목록
+    - 커버리지 목표 (예: 90%+)와 JaCoCo 달성 전략
+[F] Markdown 문서로 docs/03.test_plan.md로 저장
+```
+
+**산출물**: `docs/03.test_plan.md`
+
+---
+
+### Prompt 12
+
+```
+jacoco 플러그인을 pom.xml 에 적용하고, 갭 test 를 바로 구현해줘
+```
+
+**산출물**: `pom.xml`(JaCoCo), `TVControllerTest` 보강, `ChannelInputBufferTest`, `FavoriteChannelsTest`, `ChannelConstantsTest` — 53건 Green, `mvn verify` 통과
+
+---
+
+### Prompt 13
+
+```
+report 폴더에 보고서를 작성해줘
+```
+
+**산출물**: `REPORT/03.TDD_TV_01_테스트계획_구현_보고서.md`
+
+---
+
+### Prompt 14
+
+```
+네
+```
+
+**산출물**: `REPORT/00.TDD_TV_01_작업보고서.md` — 03 링크·테스트/JaCoCo 현황 갱신
+
+---
+
+### Prompt 15
+
+```
+prompting 폴더에 agent 와의 대화를 저장해줘
+```
+
+**산출물**: `PROMPTING/03.TDD_TV_01_테스트계획_구현_보고서_prompting.md`, `prompts_only.md`, `README.md` 갱신
+
+---
+
 ## 세션 산출물 요약
 
 | # | Prompt 요약 | 생성/수정 파일 |
@@ -145,3 +206,8 @@ report 폴더에 보고서를 작성해줘
 | 8 | 요구사항 QA 분석 (PCTF) | `docs/requirements_analysis.md` |
 | 9 | 요구사항 분석 보고서 | `REPORT/01.TDD_TV_01_요구사항분석_보고서.md` |
 | 10 | transcript export (2차) | `prompting/*` |
+| 11 | 테스트 계획서 (PCTF) | `docs/03.test_plan.md` |
+| 12 | JaCoCo + 갭 테스트 | `pom.xml`, 테스트 53건 |
+| 13 | 테스트 REPORT | `REPORT/03` |
+| 14 | 00 보고서 링크 | `REPORT/00` 갱신 |
+| 15 | transcript export (3차) | `PROMPTING/03_*_prompting.md` |

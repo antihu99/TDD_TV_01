@@ -7,7 +7,8 @@
 | 브랜치(작업) | prompting |
 | Session 1 | `3b7d5ee7-d341-4044-811c-f29bda2a0a36` (Prompt 1~7) |
 | Session 2 | `17ca3870-850a-4f1d-820c-be3e6882786f` (Prompt 8~10) |
-| 원본 | `transcript_raw.jsonl` (세션 1+2 병합) |
+| Session 3 | Agent (2026-05-19, Prompt 11~15) — 테스트 계획·JaCoCo |
+| 원본 | `transcript_raw.jsonl` (세션 1+2 병합) · Session 3은 `03_*_prompting.md` |
 
 > 사용자 프롬프트만 보려면 `prompts_only.md` 참조.
 
@@ -420,5 +421,66 @@ report 폴더에 보고서를 작성해줘
 
 ---
 
-*End of transcript — TDD_TV_01 · 2026-05-19*
+---
+
+# Session 3 — 테스트 계획·JaCoCo·REPORT/03 (2026-05-19)
+
+> 상세 대화: [`03.TDD_TV_01_테스트계획_구현_보고서_prompting.md`](03.TDD_TV_01_테스트계획_구현_보고서_prompting.md)
+
+## Turn 1 — User (Prompt 11)
+
+@TVController.java @TddTvRequirements.txt @requirements_analysis.md — [P] 시니어 QA 리드 … [F] `docs/03.test_plan.md`
+
+### Assistant
+
+- **Tool**: `Read` — TVController, requirements_analysis, TVControllerTest, pom.xml, README
+- **Tool**: `Write` — `docs/03.test_plan.md`
+
+**산출물**: 테스트 계획서 (범위·경계·JaCoCo 전략)
+
+---
+
+## Turn 2 — User (Prompt 12)
+
+jacoco 플러그인을 pom.xml 에 적용하고, 갭 test 를 바로 구현해줘
+
+### Assistant
+
+- **Tool**: `StrReplace` / `Write` — pom.xml(JaCoCo), TVControllerTest, ChannelInputBufferTest, FavoriteChannelsTest, ChannelConstantsTest
+- **Tool**: `Shell` — `mvn clean verify` → 53 tests, coverage PASS
+
+---
+
+## Turn 3 — User (Prompt 13)
+
+report 폴더에 보고서를 작성해줘
+
+### Assistant
+
+- **Tool**: `Write` — `REPORT/03.TDD_TV_01_테스트계획_구현_보고서.md`
+
+---
+
+## Turn 4 — User (Prompt 14)
+
+네
+
+### Assistant
+
+- **Tool**: `StrReplace` — `REPORT/00.TDD_TV_01_작업보고서.md` (03 링크·53건·JaCoCo)
+
+---
+
+## Turn 5 — User (Prompt 15)
+
+prompting 폴더에 agent 와의 대화를 저장해줘
+
+### Assistant
+
+- **Tool**: `Write` — `PROMPTING/03.TDD_TV_01_테스트계획_구현_보고서_prompting.md`, `prompting/` 동기화
+- **Tool**: `StrReplace` — prompts_only.md, README.md, transcript_export.md
+
+---
+
+*End of transcript — TDD_TV_01 · 2026-05-19 (Session 1~3)*
 

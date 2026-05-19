@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -131,6 +132,45 @@ class TVControllerTest {
         verify(tuner, never()).setCH(anyString());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
+    @DisplayName("B-KEY: 단일 숫자 입력 후 확인 시 해당 채널로 설정")
+    void setChannelForSingleDigitWithOk(int digit) {
+        pushDigit(digit);
+        controller.pushButton(remoteKey.KEY_OK);
+
+        verify(tuner).setCH(String.valueOf(digit));
+    }
+
+    @Test
+    @DisplayName("B-CH-03: 9, 8 연속 입력 시 98번 채널로 설정")
+    void setChannel98WhenKey9AndKey8() {
+        controller.pushButton(remoteKey.KEY_9);
+        controller.pushButton(remoteKey.KEY_8);
+
+        verify(tuner).setCH("98");
+    }
+
+    @Test
+    @DisplayName("B-CH-04: 9, 9 연속 입력 시 99번 채널로 설정")
+    void setChannel99WhenKey9AndKey9() {
+        controller.pushButton(remoteKey.KEY_9);
+        controller.pushButton(remoteKey.KEY_9);
+
+        verify(tuner).setCH("99");
+    }
+
+    @Test
+    @DisplayName("B-KEY-05: 99 설정 후 확인 시 추가 변경 없음")
+    void okAfter99DoesNotChangeChannelAgain() {
+        controller.pushButton(remoteKey.KEY_9);
+        controller.pushButton(remoteKey.KEY_9);
+        controller.pushButton(remoteKey.KEY_OK);
+
+        verify(tuner).setCH("99");
+        verify(tuner, times(1)).setCH(anyString());
+    }
+
   // --- 업/다운 (검색 없음 UD-01 ~ UD-04) ---
 
     @ParameterizedTest
@@ -228,6 +268,73 @@ class TVControllerTest {
         controller.pushButton(remoteKey.KEY_FAV_NEXT);
 
         verify(tuner).setCH("1");
+    }
+
+    @Test
+    @DisplayName("F-01: 비선호 채널 시청 중 선호추가 후 다음선호로 해당 채널 이동")
+    void addFavoriteThenNextFavoriteGoesToAddedChannel() {
+        stubChannelTracking();
+        currentChannel.set("6");
+        controller.pushButton(remoteKey.KEY_FAV_ADD);
+        currentChannel.set("5");
+
+        controller.pushButton(remoteKey.KEY_FAV_NEXT);
+
+        verify(tuner).setCH("6");
+    }
+
+    @Test
+    @DisplayName("F-02: 선호 채널 재입력 시 삭제되어 다음선호에서 제외")
+    void removeFavoriteOnSecondFavAdd() {
+        stubChannelTracking();
+        addFavorites(1, 4, 12, 56);
+        currentChannel.set("6");
+        controller.pushButton(remoteKey.KEY_FAV_ADD);
+        controller.pushButton(remoteKey.KEY_FAV_ADD);
+        currentChannel.set("5");
+
+        controller.pushButton(remoteKey.KEY_FAV_NEXT);
+
+        verify(tuner).setCH("12");
+        verify(tuner, never()).setCH("6");
+    }
+
+    @Test
+    @DisplayName("P-03: 선호 1개일 때 다음선호는 동일 채널로 로테이션")
+    void nextFavoriteRotatesWhenOnlyOneFavorite() {
+        stubChannelTracking();
+        currentChannel.set("7");
+        controller.pushButton(remoteKey.KEY_FAV_ADD);
+
+        controller.pushButton(remoteKey.KEY_FAV_NEXT);
+
+        verify(tuner).setCH("7");
+    }
+
+    @Test
+    @DisplayName("P-04: 선호 없을 때 다음선호는 튜너를 변경하지 않음")
+    void nextFavoriteDoesNothingWhenEmpty() {
+        when(tuner.getCurrentCH()).thenReturn("6");
+
+        controller.pushButton(remoteKey.KEY_FAV_NEXT);
+
+        verify(tuner, never()).setCH(anyString());
+    }
+
+    @Test
+    @DisplayName("X-01: 숫자 버퍼 대기 중 선호추가 시 버퍼 클리어")
+    void clearBufferOnFavoriteAddWhileDigitsPending() {
+        when(tuner.getCurrentCH()).thenReturn("45");
+
+        controller.pushButton(remoteKey.KEY_4);
+        controller.pushButton(remoteKey.KEY_FAV_ADD);
+        controller.pushButton(remoteKey.KEY_OK);
+
+        verify(tuner, never()).setCH(anyString());
+    }
+
+    private void pushDigit(int digit) {
+        controller.pushButton(remoteKey.valueOf("KEY_" + digit));
     }
 
     private void addFavorites(int... channels) {
