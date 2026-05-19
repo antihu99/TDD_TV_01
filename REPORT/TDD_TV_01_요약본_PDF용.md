@@ -9,7 +9,7 @@
 
 ## 1. 한 줄 요약
 
-리모컨 입력으로 채널(0~99)을 관리하는 **TVController**를 TDD로 개발하기 위해, **Git 환경 문서**, **Cursor AI 규칙**, **작업 보고서**를 정리·작성하였다.
+리모컨 입력으로 채널(0~99)을 관리하는 **TVController**를 TDD로 구현하였으며, **요구사항 분석·코드 품질 리팩토링·README 전 기능·테스트 17건 Green**까지 완료하였다.
 
 ---
 
@@ -37,6 +37,7 @@
 | `docs/requirements_analysis.md` | QA 요구사항 상세 분석 (규칙 표·시나리오 32) |
 | `REPORT/00.TDD_TV_01_작업보고서.md` | 환경·Git 설정 상세 보고서 |
 | `REPORT/01.TDD_TV_01_요구사항분석_보고서.md` | 요구사항 분석 요약 보고서 |
+| `REPORT/02.TDD_TV_01_코드품질_구현_보고서.md` | 코드 품질·구현 통합 보고서 |
 | `REPORT/TDD_TV_01_요약본_PDF용.md` | 본 PDF용 요약 |
 
 ---
@@ -66,41 +67,39 @@
 
 | 영역 | 상태 |
 |:-----|:-----|
-| TVController | KEY_1·KEY_OK만 처리, README 시나리오 대부분 미구현 |
-| remoteKey | KEY_1, KEY_OK만 정의 |
-| mvn test | 14 tests — 10 failures, 1 error |
-| TunerTest | Mock stub 미설정 (참고용) |
+| TVController | README **전 기능** 구현 (숫자·선호·검색·업/다운) |
+| TVControllerTest | **17건 Green** (N-, UD-, S-, P-) |
+| TunerTest | Mock stub 미설정 시 실패 가능 (참고용) |
 | pom.xml | Java 1.8 (규칙 목표 21과 불일치) |
 
 ---
 
-## 7. 요구사항 분석 요약 (2026-05-19)
+## 7. 구현·품질 요약 (2026-05-19)
 
 | 항목 | 내용 |
 |:-----|:-----|
-| 규칙 | 숫자(N)·업다운(UD)·검색(S)·선호(F/P) ID 체계로 정리 |
-| Tuner API | `seekCH` / `setCH` / `getCurrentCH` — 채널 0~99 |
-| Controller | README 8기능 대비 **스켈레톤** (KEY_1·KEY_OK만) |
-| 테스트 백로그 | **32개** 시나리오 — 1순위: 숫자+확인 (#6~) |
+| 코드 품질 | SRP/OCP 리팩토링 — 버퍼·핸들러·상수 분리 |
+| 구현 | `ChannelInputBuffer`, `FavoriteChannels`, `ScannedChannelList` |
+| 테스트 | Mockito `verify(setCH)` · `@ParameterizedTest` |
 
-상세: `docs/requirements_analysis.md` · `REPORT/01.TDD_TV_01_요구사항분석_보고서.md`
+상세: `REPORT/02.TDD_TV_01_코드품질_구현_보고서.md` · `docs/02.code_quality_report.md`
 
 ---
 
 ## 8. 향후 작업 (Top 5)
 
 1. pom.xml → Java 21 + JaCoCo
-2. remoteKey 0~9 및 기능 키 확장
-3. TVControllerTest — GWT + Parameterized + FakeTuner (시나리오 #6부터 Red)
-4. README 시나리오 순차 TDD (Red → Green → Refactor)
-5. prompting 브랜치 커밋·push, 병합 전 mvn test Green
+2. F-01/F-02 선호 토글 단독 테스트 (선택)
+3. `TunerTest` Mock 스텁 정비 (선택)
+4. `mvn test` 전체 Green
+5. prompting 브랜치 커밋·push
 
 ---
 
 ## 9. 결론
 
-환경·규칙·**요구사항 분석**까지 완료했으며, **Controller TDD 구현**(시나리오 #6 Red)이 다음 단계이다.  
-상세: `REPORT/00.TDD_TV_01_작업보고서.md` · `REPORT/01.TDD_TV_01_요구사항분석_보고서.md`
+**요구사항 분석 → 코드 품질 리팩토링 → Controller 전 기능 구현 → 테스트 17건 Green**까지 완료.  
+상세: `REPORT/02.TDD_TV_01_코드품질_구현_보고서.md`
 
 ---
 
