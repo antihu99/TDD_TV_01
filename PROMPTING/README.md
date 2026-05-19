@@ -6,10 +6,11 @@
 
 | 파일 | 설명 |
 |------|------|
-| `prompts_only.md` | 사용자 프롬프트만 정리 (**18건**, 4세션) |
+| `prompts_only.md` | 사용자 프롬프트만 정리 (**21건**, 5세션) |
 | `transcript_export.md` | 전체 대화 transcript (Markdown, 도구 호출 포함) |
 | `03.TDD_TV_01_테스트계획_구현_보고서_prompting.md` | Session 3 대화 (테스트 계획·JaCoCo) |
 | `04.TDD_TV_01_TVControllerTest_설계_보고서_prompting.md` | Session 4 대화 (TVControllerTest @Nested) |
+| `05.TDD_TV_01_TVController_결함분석_보고서_prompting.md` | Session 5 대화 (결함·Surefire 분석) |
 | `transcript_raw.jsonl` | Cursor agent transcript 원본 (**Session 1+2 병합**) |
 | `transcript_raw_session1.jsonl` | Session 1 원본만 |
 | `transcript_raw_session2.jsonl` | Session 2 원본만 |
@@ -24,6 +25,7 @@
 | 2 | `17ca3870-850a-4f1d-820c-be3e6882786f` | 8~10 | `docs/01.requirements_analysis.md`, `REPORT/01`, export |
 | 3 | (Agent, 2026-05-19) | 11~15 | `docs/03`, JaCoCo·갭 테스트, `REPORT/03`, `03_*_prompting.md` |
 | 4 | (Agent, 2026-05-19) | 16~18 | `TVControllerTest` @Nested 45건, `REPORT/04`, `04_*_prompting.md` |
+| 5 | (Agent, 2026-05-19) | 19~21 | 결함 분석, `REPORT/05`, `05_*_prompting.md` |
 
 **원본 경로**
 

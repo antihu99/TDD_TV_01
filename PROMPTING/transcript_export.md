@@ -530,5 +530,50 @@ prompting 폴더에 agent 와의 대화를 저장해줘
 
 ---
 
-*End of transcript — TDD_TV_01 · 2026-05-19 (Session 1~4)*
+---
+
+# Session 5 — TVController 결함 분석 (2026-05-19)
+
+## Turn 1 — User (Prompt 19)
+
+@TVControllerTest.java @TVController.java
+
+[P] 디버깅과 결함 분석에 능한 Java QA 엔지니어입니다.
+[T] TVControllerTest.java 실패 로그 조사 — 기대/실제, 버그 위치, 심각도, 최소 수정 (Item 수정 금지)
+[F] 수정 diff + mvn test Green 절차
+
+### Assistant
+
+- **Tool**: `Read` — surefire-reports, TVControllerTest, TVController
+- **Tool**: `Grep` — failure patterns in surefire-reports
+- **Tool**: `Shell` — `mvn test -Dtest=TVControllerTest` → **45 tests, BUILD SUCCESS**
+- **Tool**: `Read` — ChannelInputBuffer, ScannedChannelList, FavoriteChannels
+- **Tool**: `Shell` — `git show` 레거시 TVController (26f7487)
+- **결론**: Surefire Failures **0**, `TVController` 프로덕션 결함 **없음**; 과거 S-02·B-CH-07 스텁 이슈·레거시 Critical 문서화
+
+---
+
+## Turn 2 — User (Prompt 20)
+
+report 폴더에 보고서를 작성해줘
+
+### Assistant
+
+- **Tool**: `Write` — `REPORT/05.TDD_TV_01_TVController_결함분석_보고서.md`
+- **Tool**: `StrReplace` — `REPORT/TDD_TV_01_요약본_PDF용.md` (05 링크·결함 분석 현황)
+
+---
+
+## Turn 3 — User (Prompt 21)
+
+네... PROMPTING 폴더에 agent 와의 대화 내용을 저장해 주세요
+
+### Assistant
+
+- **Tool**: `Write` — `PROMPTING/05.TDD_TV_01_TVController_결함분석_보고서_prompting.md`
+- **Tool**: `StrReplace` — `prompts_only.md`, `README.md`, `transcript_export.md`
+
+---
+
+*End of transcript — TDD_TV_01 · 2026-05-19 (Session 1~5)*
 

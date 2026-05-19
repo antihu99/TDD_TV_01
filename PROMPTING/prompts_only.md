@@ -1,8 +1,8 @@
 # TDD_TV_01 — User Prompts Only
 
 **Export**: 2026-05-19  
-**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5) + **Session 4** (3)  
-**Total**: 18 prompts
+**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5) + **Session 4** (3) + **Session 5** (3)  
+**Total**: 21 prompts
 
 ---
 
@@ -232,6 +232,47 @@ prompting 폴더에 agent 와의 대화를 저장해줘
 
 ---
 
+## Session 5 — TVController 결함 분석 (2026-05-19)
+
+### Prompt 19 (P/C/T/F)
+
+```
+@TVControllerTest.java @TVController.java
+
+[P] 디버깅과 결함 분석에 능한 Java QA 엔지니어입니다.
+[T]TVControllerTest.java 실패 로그가 있을까요? 있다면 
+    1) 실패 원인 (기대/실제 값 차이) 요약
+    2) TVController()에서 버그 위치 특정 (파일명:줄번호)
+    3) 결함 심각도 (Critical/Major/Minor/Info) 분류 및 근거
+    4) 최소 코드 변경으로 수정 방안 제안
+       - 단, Item 클래스는 수정 금지
+[F] 수정 diff 제안 + 수정 후 mvn test Green 확인 절차
+```
+
+**산출물**: Surefire 조사 — Failures 0, `TVController` 결함 없음, 과거 S-02·B-CH-07 스텁·레거시 Critical 분석
+
+---
+
+### Prompt 20
+
+```
+report 폴더에 보고서를 작성해줘
+```
+
+**산출물**: `REPORT/05.TDD_TV_01_TVController_결함분석_보고서.md`, `REPORT/TDD_TV_01_요약본_PDF용.md` 갱신
+
+---
+
+### Prompt 21
+
+```
+네... PROMPTING 폴더에 agent 와의 대화 내용을 저장해 주세요
+```
+
+**산출물**: `PROMPTING/05.TDD_TV_01_TVController_결함분석_보고서_prompting.md`, `prompts_only.md`, `README.md` 갱신
+
+---
+
 ## 세션 산출물 요약
 
 | # | Prompt 요약 | 생성/수정 파일 |
@@ -254,3 +295,6 @@ prompting 폴더에 agent 와의 대화를 저장해줘
 | 16 | TVControllerTest 설계 (PCTF) | `TVControllerTest` 45건 `@Nested` |
 | 17 | TVControllerTest REPORT | `REPORT/04` |
 | 18 | transcript export (4차) | `PROMPTING/04_*_prompting.md` |
+| 19 | TVController 결함 분석 (PCTF) | 분석만 (코드 변경 없음) |
+| 20 | 결함 분석 REPORT | `REPORT/05` |
+| 21 | transcript export (5차) | `PROMPTING/05_*_prompting.md` |

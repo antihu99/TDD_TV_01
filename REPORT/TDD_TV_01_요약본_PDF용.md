@@ -40,6 +40,7 @@
 | `REPORT/02.TDD_TV_01_코드품질_구현_보고서.md` | 코드 품질·구현 통합 보고서 |
 | `REPORT/03.TDD_TV_01_테스트계획_구현_보고서.md` | 테스트 계획·JaCoCo·갭 테스트 |
 | `REPORT/04.TDD_TV_01_TVControllerTest_설계_보고서.md` | TVControllerTest @Nested 설계 보고 |
+| `REPORT/05.TDD_TV_01_TVController_결함분석_보고서.md` | TVController 결함·Surefire 분석 보고 |
 | `REPORT/TDD_TV_01_요약본_PDF용.md` | 본 PDF용 요약 |
 
 ---
@@ -73,6 +74,7 @@
 | TVControllerTest | **45건** (`@Nested` 5영역, Given-When-Then) |
 | 기타 테스트 | ChannelInputBuffer 7 · Favorite 5 · Constants 6 |
 | **합계** | **63건 Green** · `mvn verify` JaCoCo 통과 |
+| 결함 분석 | Surefire 실패 0 · `TVController` 프로덕션 결함 없음 |
 | TunerTest | Surefire 제외 (Mock 계약 참고용) |
 | pom.xml | Java 1.8 + JaCoCo 0.8.12 |
 
@@ -102,8 +104,8 @@
 
 ## 9. 결론
 
-**요구사항 분석 → 코드 품질 리팩토링 → Controller 전 기능 → 테스트 63건 Green → JaCoCo verify**까지 완료.  
-상세: `REPORT/04.TDD_TV_01_TVControllerTest_설계_보고서.md`
+**요구사항 분석 → 코드 품질 리팩토링 → Controller 전 기능 → 테스트 63건 Green → JaCoCo verify → 결함 분석**까지 완료.  
+상세: `REPORT/04.TDD_TV_01_TVControllerTest_설계_보고서.md` · `REPORT/05.TDD_TV_01_TVController_결함분석_보고서.md`
 
 ---
 
