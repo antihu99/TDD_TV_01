@@ -482,5 +482,53 @@ prompting 폴더에 agent 와의 대화를 저장해줘
 
 ---
 
-*End of transcript — TDD_TV_01 · 2026-05-19 (Session 1~3)*
+---
+
+# Session 4 — TVControllerTest 설계·보강 (2026-05-19)
+
+## Turn 1 — User (Prompt 16)
+
+@TVControllerTest.java @TVController.java @TddTvRequirements.txt @requirements_analysis.md @03.test_plan.md
+
+[P] 테스트 설계에 강한 시니어 Java QA입니다.
+[C] Java 21, JUnit 5
+[T] 기능별 최소 5개 테스트를 작성해줘.
+    - @DisplayName + Given-When-Then
+    - 경계값 반드시 포함
+    - 가능한 경우 @ParameterizedTest + @CsvSource 사용
+[F] 완성된 테스트 코드 (파일 단위 수정 포함). mvn test가 Green이 되게 작성
+
+### Assistant
+
+- **Tool**: `Read` — TVControllerTest, TVController, docs/03.test_plan.md, requirements
+- **Tool**: `Write` — `TVControllerTest.java` (`@Nested` 5영역, Given-When-Then, Parameterized)
+- **Tool**: `Shell` — `mvn test` → 2 failures (S-02 seekCH stub, B-CH-07 ch=99)
+- **Tool**: `StrReplace` — thenReturn 6값, B-CH-07a/b 분리
+- **Tool**: `Shell` — `mvn test` → **63 tests, BUILD SUCCESS**
+
+---
+
+## Turn 2 — User (Prompt 17)
+
+report 폴더에 보고서를 작성해줘
+
+### Assistant
+
+- **Tool**: `Write` — `REPORT/04.TDD_TV_01_TVControllerTest_설계_보고서.md`
+- **Tool**: `StrReplace` — `REPORT/TDD_TV_01_요약본_PDF용.md` (63건·04 링크)
+
+---
+
+## Turn 3 — User (Prompt 18)
+
+prompting 폴더에 agent 와의 대화를 저장해줘
+
+### Assistant
+
+- **Tool**: `Write` — `PROMPTING/04.TDD_TV_01_TVControllerTest_설계_보고서_prompting.md`
+- **Tool**: `StrReplace` — `prompts_only.md`, `README.md`, `transcript_export.md`
+
+---
+
+*End of transcript — TDD_TV_01 · 2026-05-19 (Session 1~4)*
 

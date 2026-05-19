@@ -1,8 +1,8 @@
 # TDD_TV_01 — User Prompts Only
 
 **Export**: 2026-05-19  
-**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5)  
-**Total**: 15 prompts
+**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5) + **Session 4** (3)  
+**Total**: 18 prompts
 
 ---
 
@@ -192,6 +192,46 @@ prompting 폴더에 agent 와의 대화를 저장해줘
 
 ---
 
+## Session 4 — TVControllerTest 설계·보강 (2026-05-19)
+
+### Prompt 16 (P/C/T/F)
+
+```
+@TVControllerTest.java @TVController.java @TddTvRequirements.txt @requirements_analysis.md @03.test_plan.md
+
+[P] 테스트 설계에 강한 시니어 Java QA입니다.
+[C] Java 21, JUnit 5
+[T] 기능별 최소 5개 테스트를 작성해줘.
+    - @DisplayName + Given-When-Then
+    - 경계값 반드시 포함
+    - 가능한 경우 @ParameterizedTest + @CsvSource 사용
+[F] 완성된 테스트 코드 (파일 단위 수정 포함). mvn test가 Green이 되게 작성
+```
+
+**산출물**: `TVControllerTest.java` — `@Nested` 5영역, 45건, `mvn test` 63건 Green
+
+---
+
+### Prompt 17
+
+```
+report 폴더에 보고서를 작성해줘
+```
+
+**산출물**: `REPORT/04.TDD_TV_01_TVControllerTest_설계_보고서.md`, `REPORT/TDD_TV_01_요약본_PDF용.md` 갱신
+
+---
+
+### Prompt 18
+
+```
+prompting 폴더에 agent 와의 대화를 저장해줘
+```
+
+**산출물**: `PROMPTING/04.TDD_TV_01_TVControllerTest_설계_보고서_prompting.md`, `prompts_only.md`, `README.md` 갱신
+
+---
+
 ## 세션 산출물 요약
 
 | # | Prompt 요약 | 생성/수정 파일 |
@@ -211,3 +251,6 @@ prompting 폴더에 agent 와의 대화를 저장해줘
 | 13 | 테스트 REPORT | `REPORT/03` |
 | 14 | 00 보고서 링크 | `REPORT/00` 갱신 |
 | 15 | transcript export (3차) | `PROMPTING/03_*_prompting.md` |
+| 16 | TVControllerTest 설계 (PCTF) | `TVControllerTest` 45건 `@Nested` |
+| 17 | TVControllerTest REPORT | `REPORT/04` |
+| 18 | transcript export (4차) | `PROMPTING/04_*_prompting.md` |

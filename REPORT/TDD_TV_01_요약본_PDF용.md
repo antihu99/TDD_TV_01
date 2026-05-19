@@ -9,7 +9,7 @@
 
 ## 1. 한 줄 요약
 
-리모컨 입력으로 채널(0~99)을 관리하는 **TVController**를 TDD로 구현하였으며, **요구사항 분석·코드 품질 리팩토링·README 전 기능·테스트 17건 Green**까지 완료하였다.
+리모컨 입력으로 채널(0~99)을 관리하는 **TVController**를 TDD로 구현하였으며, **요구사항 분석·코드 품질 리팩토링·README 전 기능·단위 테스트 63건 Green·JaCoCo verify 통과**까지 완료하였다.
 
 ---
 
@@ -38,6 +38,8 @@
 | `REPORT/00.TDD_TV_01_작업보고서.md` | 환경·Git 설정 상세 보고서 |
 | `REPORT/01.TDD_TV_01_요구사항분석_보고서.md` | 요구사항 분석 요약 보고서 |
 | `REPORT/02.TDD_TV_01_코드품질_구현_보고서.md` | 코드 품질·구현 통합 보고서 |
+| `REPORT/03.TDD_TV_01_테스트계획_구현_보고서.md` | 테스트 계획·JaCoCo·갭 테스트 |
+| `REPORT/04.TDD_TV_01_TVControllerTest_설계_보고서.md` | TVControllerTest @Nested 설계 보고 |
 | `REPORT/TDD_TV_01_요약본_PDF용.md` | 본 PDF용 요약 |
 
 ---
@@ -68,9 +70,11 @@
 | 영역 | 상태 |
 |:-----|:-----|
 | TVController | README **전 기능** 구현 (숫자·선호·검색·업/다운) |
-| TVControllerTest | **17건 Green** (N-, UD-, S-, P-) |
-| TunerTest | Mock stub 미설정 시 실패 가능 (참고용) |
-| pom.xml | Java 1.8 (규칙 목표 21과 불일치) |
+| TVControllerTest | **45건** (`@Nested` 5영역, Given-When-Then) |
+| 기타 테스트 | ChannelInputBuffer 7 · Favorite 5 · Constants 6 |
+| **합계** | **63건 Green** · `mvn verify` JaCoCo 통과 |
+| TunerTest | Surefire 제외 (Mock 계약 참고용) |
+| pom.xml | Java 1.8 + JaCoCo 0.8.12 |
 
 ---
 
@@ -88,18 +92,18 @@
 
 ## 8. 향후 작업 (Top 5)
 
-1. pom.xml → Java 21 + JaCoCo
-2. F-01/F-02 선호 토글 단독 테스트 (선택)
-3. `TunerTest` Mock 스텁 정비 (선택)
-4. `mvn test` 전체 Green
+1. pom.xml → Java 21 toolchain 통일
+2. `ScannedChannelList` 미커버 2라인 직접 테스트
+3. `TunerTest` / FakeTuner Green (선택)
+4. GitHub Actions `mvn verify` CI
 5. prompting 브랜치 커밋·push
 
 ---
 
 ## 9. 결론
 
-**요구사항 분석 → 코드 품질 리팩토링 → Controller 전 기능 구현 → 테스트 17건 Green**까지 완료.  
-상세: `REPORT/02.TDD_TV_01_코드품질_구현_보고서.md`
+**요구사항 분석 → 코드 품질 리팩토링 → Controller 전 기능 → 테스트 63건 Green → JaCoCo verify**까지 완료.  
+상세: `REPORT/04.TDD_TV_01_TVControllerTest_설계_보고서.md`
 
 ---
 
