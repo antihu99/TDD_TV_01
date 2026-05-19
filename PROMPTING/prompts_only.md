@@ -1,8 +1,8 @@
 # TDD_TV_01 — User Prompts Only
 
 **Export**: 2026-05-19  
-**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5) + **Session 4** (3) + **Session 5** (3) + **Session 6** (4)  
-**Total**: 25 prompts
+**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5) + **Session 4** (3) + **Session 5** (3) + **Session 6** (4) + **Session 7** (3)  
+**Total**: 28 prompts
 
 ---
 
@@ -324,6 +324,42 @@ PROMPTING 폴더에 AGENT 와의 대화를 저장해줘
 
 ---
 
+## Session 7 — TVController 2차 리팩토링 계획 (2026-05-19)
+
+### Prompt 26
+
+```
+@TVController.java @02.code_quality_report.md @01.requirements_analysis.md
+
+[P] Martin Fowler 스타일 리팩토링 코치입니다.
+[C] 제약: Tuner 클래스 수정 금지, TVController 0~50, 테스트 Green에서만 진행
+[T] TVController()를 점진적으로 리팩토링하는 계획을 제안해줘.
+    - 작은 단계 (커밋 단위)로 쪼개기
+    - 전략 패턴/ 인터페이스 등 적용 가능성
+    - 매직 넘버 상수화, 중복 제거, 가독성 개선
+[F] 단계별 체크리스트 + 각 단계 검증 방법 (mvn test)
+```
+
+**산출물**: Martin Fowler 스타일 2차 리팩토링 로드맵 (Phase 0~6, 17단계, `mvn test` 게이트)
+
+### Prompt 27
+
+```
+report 폴더에 보고서를 작성해줘
+```
+
+**산출물**: `REPORT/07.TDD_TV_01_TVController_리팩토링_계획_보고서.md`, `REPORT/00` §4.8·산출물 표 갱신
+
+### Prompt 28
+
+```
+prompting 폴더에 agent 와의 대화를 저장해줘
+```
+
+**산출물**: `PROMPTING/07.TDD_TV_01_TVController_리팩토링_계획_보고서_prompting.md`, `prompts_only.md`, `README.md` 갱신
+
+---
+
 ## 세션 산출물 요약
 
 | # | Prompt 요약 | 생성/수정 파일 |
@@ -353,3 +389,6 @@ PROMPTING 폴더에 AGENT 와의 대화를 저장해줘
 | 23 | docs/04 + test_plan_new | `docs/04.Golden_Master.md`, `docs/03.test_plan_new.md` |
 | 24 | Golden Master REPORT | `REPORT/06` |
 | 25 | transcript export (6차) | `PROMPTING/06_*_prompting.md` |
+| 26 | TVController 2차 리팩토링 계획 (PCTF) | 로드맵 (채팅) |
+| 27 | 리팩토링 계획 REPORT | `REPORT/07`, `REPORT/00` 갱신 |
+| 28 | transcript export (7차) | `PROMPTING/07_*_prompting.md` |
