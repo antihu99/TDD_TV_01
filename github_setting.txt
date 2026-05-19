@@ -1,0 +1,173 @@
+================================================================================
+GitHub / Git 설정 및 터미널 작업 기록
+프로젝트: TDD_TV_01
+작성일: 2026-05-19
+================================================================================
+
+[저장소 정보]
+- Remote URL: https://github.com/antihu99/TDD_TV_01.git
+- Remote 이름: origin (fetch / push 동일)
+- 작업 경로: D:\Vs_workplace\Java_project\TDD_TV_01
+
+[브랜치 구성]
+- main      : 기본 브랜치 (origin/HEAD -> origin/main)
+- dev       : 개발 브랜치 (origin/dev 연동)
+- prompting : 로컬에서 새로 생성한 작업 브랜치 (터미널 세션 마지막 시점)
+
+[현재 상태 (세션 종료 시점)]
+- 체크아웃 브랜치: prompting
+- Working tree: clean (커밋할 변경 없음)
+
+================================================================================
+터미널 프롬프트 대화 내용 (순서대로)
+================================================================================
+
+1) git branch
+   결과:
+     * dev
+       main
+
+2) git checkout main
+   결과: 실패 (Aborting)
+   - 원인: 로컬 변경사항이 checkout 시 덮어씌워짐
+   - 대상 파일: src/test/java/com/bestreviewer/TVControllerTest.java
+   - 안내: commit 또는 stash 후 브랜치 전환 필요
+
+3) git add .
+   - 스테이징 완료
+   - 참고: target/ 하위 빌드·테스트 산출물도 함께 추가됨 (LF -> CRLF 경고 발생)
+
+4) git commit -m "Sync src"
+   결과: [dev bb5d144] Sync src
+   - 10 files changed, 2993 insertions(+), 1 deletion(-)
+   - 주요 추가: target/maven-status/, target/surefire-reports/ 등
+
+5) git push
+   결과: dev -> dev 푸시 성공
+   - 원격: https://github.com/antihu99/TDD_TV_01.git
+   - 커밋 범위: 402b1c9..bb5d144
+
+6) git checkout main
+   결과: Switched to branch 'main'
+   - 로컬 main이 origin/main보다 1 commit 뒤처짐 (fast-forward 가능)
+
+7) git pull
+   결과: Fast-forward (dcf1e77..39a6a9a)
+   - 원격에서 추가된 파일: 클린코드_퀴즈 - 김경림.docx
+
+8) git checkout main
+   결과: Already on 'main'
+   - Your branch is up to date with 'origin/main'.
+
+9) git branch
+   결과:
+       dev
+     * main
+
+10) git checkout -b prompting
+    결과: Switched to a new branch 'prompting'
+
+11) git branch
+    결과:
+        dev
+        main
+      * prompting
+
+================================================================================
+작업 흐름 요약
+================================================================================
+1. dev 브랜치에서 TVControllerTest.java 등 로컬 변경이 있어 main 전환이 차단됨
+2. 변경사항을 dev에 커밋("Sync src") 후 origin/dev로 push
+3. main으로 전환 후 pull로 원격과 동기화
+4. prompting 브랜치를 새로 만들어 해당 브랜치에서 작업 준비
+
+================================================================================
+Git / GitHub 명령어 모음
+================================================================================
+
+# ------------------------------------------------------------------------------
+# 1. 터미널에서 실행한 명령 (순서)
+# ------------------------------------------------------------------------------
+
+git branch
+
+git checkout main
+# (실패) 로컬 변경 있음 → commit 또는 stash 후 재시도
+
+git add .
+
+git commit -m "Sync src"
+
+git push
+
+git checkout main
+
+git pull
+
+git checkout main
+
+git branch
+
+git checkout -b prompting
+
+git branch
+
+# ------------------------------------------------------------------------------
+# 2. 현재 상태 확인용
+# ------------------------------------------------------------------------------
+
+git status
+
+git branch -a
+
+git remote -v
+
+git log --oneline -5
+
+# ------------------------------------------------------------------------------
+# 3. 브랜치 전환 시 로컬 변경이 있을 때 (대안)
+# ------------------------------------------------------------------------------
+
+git stash push -m "임시 저장"
+git checkout main
+git stash pop
+
+# 또는 특정 파일만 커밋
+git add src/test/java/com/bestreviewer/TVControllerTest.java
+git commit -m "Update TVControllerTest"
+git checkout main
+
+# ------------------------------------------------------------------------------
+# 4. prompting 브랜치 원격 연동
+# ------------------------------------------------------------------------------
+
+git checkout prompting
+
+git push -u origin prompting
+
+# ------------------------------------------------------------------------------
+# 5. 원격과 동기화
+# ------------------------------------------------------------------------------
+
+git fetch origin
+
+git pull origin main
+
+git pull origin dev
+
+# ------------------------------------------------------------------------------
+# 6. 빌드 / 테스트 (커밋 전 권장)
+# ------------------------------------------------------------------------------
+
+mvn test
+
+mvn clean test
+
+================================================================================
+권장 후속 설정 (참고)
+================================================================================
+- target/ 디렉터리는 .gitignore에 포함하는 것을 권장 (빌드 산출물 커밋 방지)
+- prompting 브랜치를 원격에 올릴 경우:
+    git push -u origin prompting
+- dev/main 병합 전에는 각 브랜치에서 테스트 실행 권장:
+    mvn test
