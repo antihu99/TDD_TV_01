@@ -62,7 +62,8 @@ public class TvControllerTest {
     }
 
     @Test
-    @DisplayName("숫자_1_2_3_4_입력시_12후34변경
+    @DisplayName("숫자_1_2_3_4_입력시_12후34변경")
+    void Key1234Test() {
 
         
         controller.press(RemoteKey.NUM_1);
