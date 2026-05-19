@@ -34,7 +34,9 @@
 |:-------|:-----|
 | `github_setting.txt` | Git/GitHub 터미널 작업·명령 기록 |
 | `.cursorrules` | Cursor AI TDD·리팩토링 규칙 |
-| `REPORT/TDD_TV_01_작업보고서.md` | 상세 보고서 |
+| `docs/requirements_analysis.md` | QA 요구사항 상세 분석 (규칙 표·시나리오 32) |
+| `REPORT/00.TDD_TV_01_작업보고서.md` | 환경·Git 설정 상세 보고서 |
+| `REPORT/01.TDD_TV_01_요구사항분석_보고서.md` | 요구사항 분석 요약 보고서 |
 | `REPORT/TDD_TV_01_요약본_PDF용.md` | 본 PDF용 요약 |
 
 ---
@@ -72,20 +74,33 @@
 
 ---
 
-## 7. 향후 작업 (Top 5)
+## 7. 요구사항 분석 요약 (2026-05-19)
+
+| 항목 | 내용 |
+|:-----|:-----|
+| 규칙 | 숫자(N)·업다운(UD)·검색(S)·선호(F/P) ID 체계로 정리 |
+| Tuner API | `seekCH` / `setCH` / `getCurrentCH` — 채널 0~99 |
+| Controller | README 8기능 대비 **스켈레톤** (KEY_1·KEY_OK만) |
+| 테스트 백로그 | **32개** 시나리오 — 1순위: 숫자+확인 (#6~) |
+
+상세: `docs/requirements_analysis.md` · `REPORT/01.TDD_TV_01_요구사항분석_보고서.md`
+
+---
+
+## 8. 향후 작업 (Top 5)
 
 1. pom.xml → Java 21 + JaCoCo
 2. remoteKey 0~9 및 기능 키 확장
-3. TVControllerTest — GWT + Parameterized + FakeTuner
+3. TVControllerTest — GWT + Parameterized + FakeTuner (시나리오 #6부터 Red)
 4. README 시나리오 순차 TDD (Red → Green → Refactor)
 5. prompting 브랜치 커밋·push, 병합 전 mvn test Green
 
 ---
 
-## 8. 결론
+## 9. 결론
 
-환경·규칙·문서화 단계를 마쳤으며, **Controller TDD 구현**이 다음 단계이다.  
-상세: `REPORT/TDD_TV_01_작업보고서.md`
+환경·규칙·**요구사항 분석**까지 완료했으며, **Controller TDD 구현**(시나리오 #6 Red)이 다음 단계이다.  
+상세: `REPORT/00.TDD_TV_01_작업보고서.md` · `REPORT/01.TDD_TV_01_요구사항분석_보고서.md`
 
 ---
 
