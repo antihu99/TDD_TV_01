@@ -11,7 +11,9 @@
 package com.bestreviewer;
 
 public interface Tuner {
-    public String seekCH();
-    public void setCH(String ch) throws IllegalArgumentException;
-    public String getCurrentCH();
+    public int seekCH();
+
+    public void setCH(int ch) throws IllegalArgumentException;
+
+    public int getCurrentCH();
 }
