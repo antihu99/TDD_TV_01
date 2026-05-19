@@ -1,8 +1,8 @@
 # TDD_TV_01 — User Prompts Only
 
 **Export**: 2026-05-19  
-**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5) + **Session 4** (3) + **Session 5** (3)  
-**Total**: 21 prompts
+**Sessions**: `3b7d5ee7-...` (7) + `17ca3870-...` (3) + **Session 3** (5) + **Session 4** (3) + **Session 5** (3) + **Session 6** (4)  
+**Total**: 25 prompts
 
 ---
 
@@ -273,6 +273,57 @@ report 폴더에 보고서를 작성해줘
 
 ---
 
+## Session 6 — Golden Master 회귀 (2026-05-19)
+
+### Prompt 22 (P/C/T/F)
+
+```
+@TVControllerTest.java
+
+[P] 회귀 테스트(Approval/Golden Master) 설계 전문가입니다.
+[C] Java 21, JUnit 5, Maven
+[T] Golden Master를 설계/구현해줘.
+    1) 기준 출력(golden_master_expected.txt)을 생성/보관하는 방법
+    2) 테스트에서 actual 출력과 파일 비교하는 방법
+    3) CI에서 mvn test로 자동 실행되는 구성
+    4) (선택) Approvals 테스트 적용 가능성
+[F] 테스트 코드 + 파일 저장/비교 구현 + 실행 방법
+```
+
+**산출물**: `RecordingTuner`, `TVControllerGoldenMasterScenarios`, `GoldenMasterSupport`, `TVControllerGoldenMasterTest`, `golden_master_expected.txt`, `.github/workflows/ci.yml`, (선택) `TVControllerGoldenMasterApprovalsTest` — `mvn test` 66건 Green
+
+---
+
+### Prompt 23
+
+```
+Golden Master 절을 docs 폴더에 04.Golden_Master 파일로 저장하고, 더불어 docs/03.test_plan.md 파일 Golden Master 절을 넣어 docs/03.test_plan_new로 만들어줘
+```
+
+**산출물**: `docs/04.Golden_Master.md`, `docs/03.test_plan_new.md` (§4 Golden Master, §5~§11 재번호)
+
+---
+
+### Prompt 24
+
+```
+report 폴더에 보고서를 작성해줘
+```
+
+**산출물**: `REPORT/06.TDD_TV_01_Golden_Master_구현_보고서.md`, `REPORT/00` §4.7·산출물 목록 갱신
+
+---
+
+### Prompt 25
+
+```
+PROMPTING 폴더에 AGENT 와의 대화를 저장해줘
+```
+
+**산출물**: `PROMPTING/06.TDD_TV_01_Golden_Master_구현_보고서_prompting.md`, `prompts_only.md`, `README.md` 갱신
+
+---
+
 ## 세션 산출물 요약
 
 | # | Prompt 요약 | 생성/수정 파일 |
@@ -298,3 +349,7 @@ report 폴더에 보고서를 작성해줘
 | 19 | TVController 결함 분석 (PCTF) | 분석만 (코드 변경 없음) |
 | 20 | 결함 분석 REPORT | `REPORT/05` |
 | 21 | transcript export (5차) | `PROMPTING/05_*_prompting.md` |
+| 22 | Golden Master 설계·구현 (PCTF) | Golden Master 테스트·baseline·CI |
+| 23 | docs/04 + test_plan_new | `docs/04.Golden_Master.md`, `docs/03.test_plan_new.md` |
+| 24 | Golden Master REPORT | `REPORT/06` |
+| 25 | transcript export (6차) | `PROMPTING/06_*_prompting.md` |

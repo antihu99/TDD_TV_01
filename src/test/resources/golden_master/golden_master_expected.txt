@@ -1,0 +1,99 @@
+### N-01: 1·확인 → 1번
+# initial_ch=0
+setCH(1)
+# final_ch=1
+### N-02: 1·2 → 12번
+# initial_ch=0
+setCH(12)
+# final_ch=12
+### N-03: 1·2·3·4 → 12 후 34
+# initial_ch=0
+setCH(12)
+setCH(34)
+# final_ch=34
+### N-04: 4·5·6 → 45번
+# initial_ch=0
+setCH(45)
+# final_ch=45
+### N-05: 456·확인 → 45 후 6
+# initial_ch=0
+setCH(45)
+setCH(6)
+# final_ch=6
+### N-06: 456·채널업 → 45·46 (6 무효)
+# initial_ch=0
+setCH(45)
+setCH(46)
+# final_ch=46
+### N-07: 0·7 → 7번
+# initial_ch=0
+setCH(7)
+# final_ch=7
+### OK-02: 빈 버퍼·확인 → setCH 없음
+# initial_ch=0
+# final_ch=0
+### UD-01: ch=6·업 → 7
+# initial_ch=0
+# setup_ch=6
+setCH(7)
+# final_ch=7
+### UD-03: ch=99·업 → 0
+# initial_ch=0
+# setup_ch=99
+setCH(0)
+# final_ch=0
+### UD-04: ch=0·다운 → 99
+# initial_ch=0
+# setup_ch=0
+setCH(99)
+# final_ch=99
+### S-01: 검색 seek 3회
+# initial_ch=0
+# setup_ch=6
+seekCH() -> 14
+seekCH() -> 4
+seekCH() -> 6
+# final_ch=6
+### X-05: 검색 즉시 순환 seek 1회
+# initial_ch=0
+# setup_ch=7
+seekCH() -> 7
+# final_ch=7
+### X-02: 버퍼 4·검색·확인 → setCH 없음
+# initial_ch=0
+# setup_ch=6
+seekCH() -> 14
+seekCH() -> 4
+seekCH() -> 6
+# final_ch=6
+### UD-05: 검색목록·ch=6·업 → 14
+# initial_ch=0
+# setup_ch=6
+seekCH() -> 14
+seekCH() -> 4
+seekCH() -> 6
+setCH(14)
+# final_ch=14
+### P-01: 선호 1·4·12·56·ch=6·다음선호 → 12
+# initial_ch=0
+# setup_ch=1
+# setup_ch=4
+# setup_ch=12
+# setup_ch=56
+# setup_ch=6
+setCH(12)
+# final_ch=12
+### P-04: 선호 없음·다음선호 → setCH 없음
+# initial_ch=0
+# setup_ch=6
+# final_ch=6
+### F-02: 선호 토글 제외·다음선호 → 12
+# initial_ch=0
+# setup_ch=1
+# setup_ch=4
+# setup_ch=12
+# setup_ch=56
+# setup_ch=6
+# setup_ch=5
+setCH(12)
+# final_ch=12
